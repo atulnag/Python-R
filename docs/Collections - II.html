@@ -12373,7 +12373,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">read_FASTA_strings</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
@@ -12389,7 +12389,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">seqs</span> <span class="o">=</span> <span class="n">read_FASTA_strings</span><span class="p">(</span><span class="s2">&quot;data/aa003.fasta&quot;</span><span class="p">)</span>
@@ -12402,7 +12402,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">seqs</span>
@@ -12418,7 +12418,7 @@ div#notebook {
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[6]:</div>
+<div class="prompt output_prompt">Out[3]:</div>
 
 
 
@@ -13016,13 +13016,16 @@ UCU
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Revisit-FASTA-reader">Revisit FASTA reader<a class="anchor-link" href="#Revisit-FASTA-reader">&#182;</a></h4>
+<h4 id="Revisit-FASTA-reader">Revisit FASTA reader<a class="anchor-link" href="#Revisit-FASTA-reader">&#182;</a></h4><ul>
+<li>Suppose we want to split the description from a base sequence</li>
+</ul>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">read_FASTA_entries</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
@@ -13034,9 +13037,93 @@ UCU
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>Given a string <code>string</code> and another string <code>sepr</code>, the call <code>string.partition(sepr)</code> returns a tuple with three elements: <ul>
+<li>the part of string up to the first appearance of sepr</li>
+<li>sepr</li>
+<li>the part of string after sepr.</li>
+</ul>
+</li>
+<li>Calling partition with an argument of <code>'\n'</code> will split the description from the base sequence.</li>
+</ul>
+
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">seqs</span> <span class="o">=</span> <span class="n">read_FASTA_entries</span><span class="p">(</span><span class="s2">&quot;data/aa003.fasta&quot;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">seqs</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[8]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[(&#39;gi|6693803|gb|AAF24990.1|AF121349_4 (AF121349) late expression factor 5 [Neodiprion sertifer nucleopolyhedrovirus]&#39;,
+  &#39;\n&#39;,
+  &#39;MPPCSEKTLKDIEEIFLKFRRKKKWEDLIRYLKYKQPKCVKTFNLTGTGHKYHAMWAYNPITDKREKKQISLDVMKIQEL\nHRITNNNSKLYVEIRKIMTDDHRCPCEEIKNYMQQIAEYKNNRSNKVFNTPPTKIVPNALEKILKNFTINLMIDKKPKKK\nITKSAHTIKHPPVLNIDYEHTLEFAGQTTVKEICKHASLGDTIEIQNRSFDEMVNLYTTCVQCKQMYKIQ\n&#39;),
+ (&#39;gi|6693805|gb|AAF24991.1| (AF125506) astacin family metalloendopeptidase FARM-1 [Hydra vulgaris]&#39;,
+  &#39;\n&#39;,
+  &#39;MSSSNHIHVLRAIDEYHKHTCLKFVKRTNQDAYLSFYPGGGCSSLVGYVRGRINDVSLAGGCLRLGTVMHEIGHSIGLYH\nEQSRPDRDDHVTIIWNNIQSNMRFNFDKFDRNKINSLGFPYDYESMMHYESNAFGGGQVTIRTKDPSKQKLIGNRQGFSE\nIDKQQINAMYNCNRGGSTLPPSVPPTVSPVAQCVEGQDLDNRCLGWATSGYCTATDPAHLETMKKKCCKSCKESAICNDK\nNTRCDEWAKKGECKANPNWMLGNCSKSCLVC\n&#39;),
+ (&#39;gi|6693816|gb|AAF24994.1|AF129447_1 (AF129447) RpoB [Klebsiella ornithinolytica]&#39;,
+  &#39;\n&#39;,
+  &#39;AAVKEFFGSSQLSQFMDQNNPLSEITHKRRISALGPGGLTRERAGFEVRDVHPTHYGRVCPIETPEGPNIGLINSLSVYA\nQTNEYGFLETPYRKVTDGVVTDEIHYLSAIEEGNYVIAQANSNLDDEGHFVEDLVTCRSKGESSLFSRDQVDYMDVSTQQ\nVVSVGGSSERVL\n&#39;)]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>Next, we need to remove the newline characters from within each sequence string. </li>
+<li>Again, we’ll define a new function: it will use <code>str.replace</code> and another list comprehension. </li>
+<li>We’ll also discard the useless <code>'&gt;'</code> that begins each description.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">read_FASTA_sequences</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
@@ -13051,20 +13138,70 @@ UCU
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">read_FASTA_sequences_unpacked</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
-    <span class="k">return</span> <span class="p">[(</span><span class="n">info</span><span class="p">,</span> <span class="n">seq</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">))</span>
-            <span class="k">for</span> <span class="n">info</span><span class="p">,</span> <span class="n">ignore</span><span class="p">,</span> <span class="n">seq</span> <span class="ow">in</span>                     <span class="c1"># ignore is ignored (!)</span>
-            <span class="n">read_FASTA_entries</span><span class="p">(</span><span class="n">filename</span><span class="p">)]</span>
-    
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">seqs</span> <span class="o">=</span> <span class="n">read_FASTA_sequences</span><span class="p">(</span><span class="s2">&quot;data/aa003.fasta&quot;</span><span class="p">)</span>
+<span class="n">seqs</span>
 </pre></div>
 
 </div>
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[11]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[[&#39;gi|6693803|gb|AAF24990.1|AF121349_4 (AF121349) late expression factor 5 [Neodiprion sertifer nucleopolyhedrovirus]&#39;,
+  &#39;MPPCSEKTLKDIEEIFLKFRRKKKWEDLIRYLKYKQPKCVKTFNLTGTGHKYHAMWAYNPITDKREKKQISLDVMKIQELHRITNNNSKLYVEIRKIMTDDHRCPCEEIKNYMQQIAEYKNNRSNKVFNTPPTKIVPNALEKILKNFTINLMIDKKPKKKITKSAHTIKHPPVLNIDYEHTLEFAGQTTVKEICKHASLGDTIEIQNRSFDEMVNLYTTCVQCKQMYKIQ&#39;],
+ [&#39;gi|6693805|gb|AAF24991.1| (AF125506) astacin family metalloendopeptidase FARM-1 [Hydra vulgaris]&#39;,
+  &#39;MSSSNHIHVLRAIDEYHKHTCLKFVKRTNQDAYLSFYPGGGCSSLVGYVRGRINDVSLAGGCLRLGTVMHEIGHSIGLYHEQSRPDRDDHVTIIWNNIQSNMRFNFDKFDRNKINSLGFPYDYESMMHYESNAFGGGQVTIRTKDPSKQKLIGNRQGFSEIDKQQINAMYNCNRGGSTLPPSVPPTVSPVAQCVEGQDLDNRCLGWATSGYCTATDPAHLETMKKKCCKSCKESAICNDKNTRCDEWAKKGECKANPNWMLGNCSKSCLVC&#39;],
+ [&#39;gi|6693816|gb|AAF24994.1|AF129447_1 (AF129447) RpoB [Klebsiella ornithinolytica]&#39;,
+  &#39;AAVKEFFGSSQLSQFMDQNNPLSEITHKRRISALGPGGLTRERAGFEVRDVHPTHYGRVCPIETPEGPNIGLINSLSVYAQTNEYGFLETPYRKVTDGVVTDEIHYLSAIEEGNYVIAQANSNLDDEGHFVEDLVTCRSKGESSLFSRDQVDYMDVSTQQVVSVGGSSERVL&#39;]]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">read_FASTA_sequences_unpacked</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">[(</span><span class="n">info</span><span class="p">,</span> <span class="n">seq</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">))</span>
+            <span class="k">for</span> <span class="n">info</span><span class="p">,</span> <span class="n">ignore</span><span class="p">,</span> <span class="n">seq</span> <span class="ow">in</span>                     <span class="c1"># ignore is ignored (!)</span>
+            <span class="n">read_FASTA_entries</span><span class="p">(</span><span class="n">filename</span><span class="p">)]</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>The description lines of FASTA files generally contain vertical bars to separate field values.</li>
+<li>We define a new function that calls read_FASTA_sequences , then uses <code>str.split</code> to return a list of field values for the description instead of just a string.</li>
+</ul>
+
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
@@ -13083,137 +13220,7 @@ UCU
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[18]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;data/aa003.fasta&#39;</span>
-
-<span class="n">seqs</span> <span class="o">=</span> <span class="n">read_FASTA_strings</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">seqs</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>[&#39;gi|6693803|gb|AAF24990.1|AF121349_4 (AF121349) late expression factor 5 [Neodiprion sertifer nucleopolyhedrovirus]\nMPPCSEKTLKDIEEIFLKFRRKKKWEDLIRYLKYKQPKCVKTFNLTGTGHKYHAMWAYNPITDKREKKQISLDVMKIQEL\nHRITNNNSKLYVEIRKIMTDDHRCPCEEIKNYMQQIAEYKNNRSNKVFNTPPTKIVPNALEKILKNFTINLMIDKKPKKK\nITKSAHTIKHPPVLNIDYEHTLEFAGQTTVKEICKHASLGDTIEIQNRSFDEMVNLYTTCVQCKQMYKIQ\n&#39;, &#39;gi|6693805|gb|AAF24991.1| (AF125506) astacin family metalloendopeptidase FARM-1 [Hydra vulgaris]\nMSSSNHIHVLRAIDEYHKHTCLKFVKRTNQDAYLSFYPGGGCSSLVGYVRGRINDVSLAGGCLRLGTVMHEIGHSIGLYH\nEQSRPDRDDHVTIIWNNIQSNMRFNFDKFDRNKINSLGFPYDYESMMHYESNAFGGGQVTIRTKDPSKQKLIGNRQGFSE\nIDKQQINAMYNCNRGGSTLPPSVPPTVSPVAQCVEGQDLDNRCLGWATSGYCTATDPAHLETMKKKCCKSCKESAICNDK\nNTRCDEWAKKGECKANPNWMLGNCSKSCLVC\n&#39;, &#39;gi|6693816|gb|AAF24994.1|AF129447_1 (AF129447) RpoB [Klebsiella ornithinolytica]\nAAVKEFFGSSQLSQFMDQNNPLSEITHKRRISALGPGGLTRERAGFEVRDVHPTHYGRVCPIETPEGPNIGLINSLSVYA\nQTNEYGFLETPYRKVTDGVVTDEIHYLSAIEEGNYVIAQANSNLDDEGHFVEDLVTCRSKGESSLFSRDQVDYMDVSTQQ\nVVSVGGSSERVL\n&#39;]
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[19]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">seqs</span> <span class="o">=</span> <span class="n">read_FASTA_entries</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">seqs</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>[(&#39;gi|6693803|gb|AAF24990.1|AF121349_4 (AF121349) late expression factor 5 [Neodiprion sertifer nucleopolyhedrovirus]&#39;, &#39;\n&#39;, &#39;MPPCSEKTLKDIEEIFLKFRRKKKWEDLIRYLKYKQPKCVKTFNLTGTGHKYHAMWAYNPITDKREKKQISLDVMKIQEL\nHRITNNNSKLYVEIRKIMTDDHRCPCEEIKNYMQQIAEYKNNRSNKVFNTPPTKIVPNALEKILKNFTINLMIDKKPKKK\nITKSAHTIKHPPVLNIDYEHTLEFAGQTTVKEICKHASLGDTIEIQNRSFDEMVNLYTTCVQCKQMYKIQ\n&#39;), (&#39;gi|6693805|gb|AAF24991.1| (AF125506) astacin family metalloendopeptidase FARM-1 [Hydra vulgaris]&#39;, &#39;\n&#39;, &#39;MSSSNHIHVLRAIDEYHKHTCLKFVKRTNQDAYLSFYPGGGCSSLVGYVRGRINDVSLAGGCLRLGTVMHEIGHSIGLYH\nEQSRPDRDDHVTIIWNNIQSNMRFNFDKFDRNKINSLGFPYDYESMMHYESNAFGGGQVTIRTKDPSKQKLIGNRQGFSE\nIDKQQINAMYNCNRGGSTLPPSVPPTVSPVAQCVEGQDLDNRCLGWATSGYCTATDPAHLETMKKKCCKSCKESAICNDK\nNTRCDEWAKKGECKANPNWMLGNCSKSCLVC\n&#39;), (&#39;gi|6693816|gb|AAF24994.1|AF129447_1 (AF129447) RpoB [Klebsiella ornithinolytica]&#39;, &#39;\n&#39;, &#39;AAVKEFFGSSQLSQFMDQNNPLSEITHKRRISALGPGGLTRERAGFEVRDVHPTHYGRVCPIETPEGPNIGLINSLSVYA\nQTNEYGFLETPYRKVTDGVVTDEIHYLSAIEEGNYVIAQANSNLDDEGHFVEDLVTCRSKGESSLFSRDQVDYMDVSTQQ\nVVSVGGSSERVL\n&#39;)]
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[21]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">seqs</span> <span class="o">=</span> <span class="n">read_FASTA_sequences</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">seqs</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>[[&#39;gi|6693803|gb|AAF24990.1|AF121349_4 (AF121349) late expression factor 5 [Neodiprion sertifer nucleopolyhedrovirus]&#39;, &#39;MPPCSEKTLKDIEEIFLKFRRKKKWEDLIRYLKYKQPKCVKTFNLTGTGHKYHAMWAYNPITDKREKKQISLDVMKIQELHRITNNNSKLYVEIRKIMTDDHRCPCEEIKNYMQQIAEYKNNRSNKVFNTPPTKIVPNALEKILKNFTINLMIDKKPKKKITKSAHTIKHPPVLNIDYEHTLEFAGQTTVKEICKHASLGDTIEIQNRSFDEMVNLYTTCVQCKQMYKIQ&#39;], [&#39;gi|6693805|gb|AAF24991.1| (AF125506) astacin family metalloendopeptidase FARM-1 [Hydra vulgaris]&#39;, &#39;MSSSNHIHVLRAIDEYHKHTCLKFVKRTNQDAYLSFYPGGGCSSLVGYVRGRINDVSLAGGCLRLGTVMHEIGHSIGLYHEQSRPDRDDHVTIIWNNIQSNMRFNFDKFDRNKINSLGFPYDYESMMHYESNAFGGGQVTIRTKDPSKQKLIGNRQGFSEIDKQQINAMYNCNRGGSTLPPSVPPTVSPVAQCVEGQDLDNRCLGWATSGYCTATDPAHLETMKKKCCKSCKESAICNDKNTRCDEWAKKGECKANPNWMLGNCSKSCLVC&#39;], [&#39;gi|6693816|gb|AAF24994.1|AF129447_1 (AF129447) RpoB [Klebsiella ornithinolytica]&#39;, &#39;AAVKEFFGSSQLSQFMDQNNPLSEITHKRRISALGPGGLTRERAGFEVRDVHPTHYGRVCPIETPEGPNIGLINSLSVYAQTNEYGFLETPYRKVTDGVVTDEIHYLSAIEEGNYVIAQANSNLDDEGHFVEDLVTCRSKGESSLFSRDQVDYMDVSTQQVVSVGGSSERVL&#39;]]
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[22]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">seqs</span> <span class="o">=</span> <span class="n">read_FASTA_sequences_unpacked</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">seqs</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>[(&#39;gi|6693803|gb|AAF24990.1|AF121349_4 (AF121349) late expression factor 5 [Neodiprion sertifer nucleopolyhedrovirus]&#39;, &#39;MPPCSEKTLKDIEEIFLKFRRKKKWEDLIRYLKYKQPKCVKTFNLTGTGHKYHAMWAYNPITDKREKKQISLDVMKIQELHRITNNNSKLYVEIRKIMTDDHRCPCEEIKNYMQQIAEYKNNRSNKVFNTPPTKIVPNALEKILKNFTINLMIDKKPKKKITKSAHTIKHPPVLNIDYEHTLEFAGQTTVKEICKHASLGDTIEIQNRSFDEMVNLYTTCVQCKQMYKIQ&#39;), (&#39;gi|6693805|gb|AAF24991.1| (AF125506) astacin family metalloendopeptidase FARM-1 [Hydra vulgaris]&#39;, &#39;MSSSNHIHVLRAIDEYHKHTCLKFVKRTNQDAYLSFYPGGGCSSLVGYVRGRINDVSLAGGCLRLGTVMHEIGHSIGLYHEQSRPDRDDHVTIIWNNIQSNMRFNFDKFDRNKINSLGFPYDYESMMHYESNAFGGGQVTIRTKDPSKQKLIGNRQGFSEIDKQQINAMYNCNRGGSTLPPSVPPTVSPVAQCVEGQDLDNRCLGWATSGYCTATDPAHLETMKKKCCKSCKESAICNDKNTRCDEWAKKGECKANPNWMLGNCSKSCLVC&#39;), (&#39;gi|6693816|gb|AAF24994.1|AF129447_1 (AF129447) RpoB [Klebsiella ornithinolytica]&#39;, &#39;AAVKEFFGSSQLSQFMDQNNPLSEITHKRRISALGPGGLTRERAGFEVRDVHPTHYGRVCPIETPEGPNIGLINSLSVYAQTNEYGFLETPYRKVTDGVVTDEIHYLSAIEEGNYVIAQANSNLDDEGHFVEDLVTCRSKGESSLFSRDQVDYMDVSTQQVVSVGGSSERVL&#39;)]
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[23]:</div>
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">seqs</span> <span class="o">=</span> <span class="n">read_FASTA_sequences_and_info</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
@@ -13243,9 +13250,35 @@ UCU
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>Each sequence in the result returned is represented by a two-element list. <ul>
+<li>The first element is a list of the segments of the description</li>
+<li>The second is the whole sequence with no newline characters.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li>Altogether, the functions we developed to read sequences from a FASTA file do the following:<ul>
+<li>Split the file contents at '&gt;' to get a list of strings representing entries</li>
+<li>Partition the strings to separate the first line from the rest</li>
+<li>Remove the useless '&gt;' from the resulting triples</li>
+<li>Remove the newlines from the sequence data</li>
+<li>Split the description line into pieces where vertical bars appear</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[24]:</div>
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Reading FASTA sequences with one compact function</span>
@@ -13266,7 +13299,7 @@ UCU
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[26]:</div>
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">seqs</span> <span class="o">=</span> <span class="n">read_FASTA</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
@@ -13283,81 +13316,7 @@ UCU
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[26]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>[([&#39;gi&#39;,
-   &#39;6693803&#39;,
-   &#39;gb&#39;,
-   &#39;AAF24990.1&#39;,
-   &#39;AF121349_4 (AF121349) late expression factor 5 [Neodiprion sertifer nucleopolyhedrovirus]&#39;],
-  &#39;MPPCSEKTLKDIEEIFLKFRRKKKWEDLIRYLKYKQPKCVKTFNLTGTGHKYHAMWAYNPITDKREKKQISLDVMKIQELHRITNNNSKLYVEIRKIMTDDHRCPCEEIKNYMQQIAEYKNNRSNKVFNTPPTKIVPNALEKILKNFTINLMIDKKPKKKITKSAHTIKHPPVLNIDYEHTLEFAGQTTVKEICKHASLGDTIEIQNRSFDEMVNLYTTCVQCKQMYKIQ&#39;),
- ([&#39;gi&#39;,
-   &#39;6693805&#39;,
-   &#39;gb&#39;,
-   &#39;AAF24991.1&#39;,
-   &#39; (AF125506) astacin family metalloendopeptidase FARM-1 [Hydra vulgaris]&#39;],
-  &#39;MSSSNHIHVLRAIDEYHKHTCLKFVKRTNQDAYLSFYPGGGCSSLVGYVRGRINDVSLAGGCLRLGTVMHEIGHSIGLYHEQSRPDRDDHVTIIWNNIQSNMRFNFDKFDRNKINSLGFPYDYESMMHYESNAFGGGQVTIRTKDPSKQKLIGNRQGFSEIDKQQINAMYNCNRGGSTLPPSVPPTVSPVAQCVEGQDLDNRCLGWATSGYCTATDPAHLETMKKKCCKSCKESAICNDKNTRCDEWAKKGECKANPNWMLGNCSKSCLVC&#39;),
- ([&#39;gi&#39;,
-   &#39;6693816&#39;,
-   &#39;gb&#39;,
-   &#39;AAF24994.1&#39;,
-   &#39;AF129447_1 (AF129447) RpoB [Klebsiella ornithinolytica]&#39;],
-  &#39;AAVKEFFGSSQLSQFMDQNNPLSEITHKRRISALGPGGLTRERAGFEVRDVHPTHYGRVCPIETPEGPNIGLINSLSVYAQTNEYGFLETPYRKVTDGVVTDEIHYLSAIEEGNYVIAQANSNLDDEGHFVEDLVTCRSKGESSLFSRDQVDYMDVSTQQVVSVGGSSERVL&#39;)]</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[27]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">### Reading FASTA entries from a file, binding names</span>
-
-<span class="k">def</span> <span class="nf">read_FASTA</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
-        <span class="n">contents</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>            <span class="c1"># only statement inside the with</span>
-    <span class="n">entries</span> <span class="o">=</span> <span class="n">contents</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;&gt;&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">:]</span>     <span class="c1"># skip blank first entry</span>
-    <span class="n">partitioned_entries</span> <span class="o">=</span> <span class="p">[</span><span class="n">entry</span><span class="o">.</span><span class="n">partition</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">entry</span> <span class="ow">in</span> <span class="n">entries</span><span class="p">]</span>
-    <span class="n">pairs</span> <span class="o">=</span> <span class="p">[(</span><span class="n">entry</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">entry</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span> <span class="k">for</span> <span class="n">entry</span> <span class="ow">in</span> <span class="n">partitioned_entries</span><span class="p">]</span>  <span class="c1"># omit &#39;&gt;&#39;</span>
-    <span class="n">pairs2</span> <span class="o">=</span> <span class="p">[(</span><span class="n">pair</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">pair</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">))</span> <span class="k">for</span> <span class="n">pair</span> <span class="ow">in</span> <span class="n">pairs</span><span class="p">]</span>
-    <span class="n">result</span> <span class="o">=</span> <span class="p">[(</span><span class="n">pair</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;|&#39;</span><span class="p">),</span> <span class="n">pair</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="k">for</span> <span class="n">pair</span> <span class="ow">in</span> <span class="n">pairs2</span><span class="p">]</span>
-    <span class="k">return</span> <span class="n">result</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[28]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">seqs</span> <span class="o">=</span> <span class="n">read_FASTA</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
-<span class="n">seqs</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt output_prompt">Out[28]:</div>
+<div class="prompt output_prompt">Out[20]:</div>
 
 
 
@@ -13403,11 +13362,11 @@ UCU
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[29]:</div>
+<div class="prompt input_prompt">In&nbsp;[21]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">make_indexed_sequence_dictionary</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
-    <span class="k">return</span> <span class="p">{</span><span class="n">info</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span> <span class="n">seq</span> <span class="k">for</span> <span class="n">info</span><span class="p">,</span> <span class="n">seq</span> <span class="ow">in</span> <span class="n">read_FASTA</span><span class="p">(</span><span class="n">filename</span><span class="p">)}</span>
+    <span class="k">return</span> <span class="p">{</span><span class="n">info</span><span class="p">[</span><span class="mi">3</span><span class="p">]:</span> <span class="n">seq</span> <span class="k">for</span> <span class="n">info</span><span class="p">,</span> <span class="n">seq</span> <span class="ow">in</span> <span class="n">read_FASTA</span><span class="p">(</span><span class="n">filename</span><span class="p">)}</span>
 
 <span class="n">seqs</span> <span class="o">=</span> <span class="n">make_indexed_sequence_dictionary</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
 <span class="n">seqs</span>
@@ -13423,13 +13382,15 @@ UCU
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[29]:</div>
+<div class="prompt output_prompt">Out[21]:</div>
 
 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>{&#39;gi&#39;: &#39;AAVKEFFGSSQLSQFMDQNNPLSEITHKRRISALGPGGLTRERAGFEVRDVHPTHYGRVCPIETPEGPNIGLINSLSVYAQTNEYGFLETPYRKVTDGVVTDEIHYLSAIEEGNYVIAQANSNLDDEGHFVEDLVTCRSKGESSLFSRDQVDYMDVSTQQVVSVGGSSERVL&#39;}</pre>
+<pre>{&#39;AAF24990.1&#39;: &#39;MPPCSEKTLKDIEEIFLKFRRKKKWEDLIRYLKYKQPKCVKTFNLTGTGHKYHAMWAYNPITDKREKKQISLDVMKIQELHRITNNNSKLYVEIRKIMTDDHRCPCEEIKNYMQQIAEYKNNRSNKVFNTPPTKIVPNALEKILKNFTINLMIDKKPKKKITKSAHTIKHPPVLNIDYEHTLEFAGQTTVKEICKHASLGDTIEIQNRSFDEMVNLYTTCVQCKQMYKIQ&#39;,
+ &#39;AAF24991.1&#39;: &#39;MSSSNHIHVLRAIDEYHKHTCLKFVKRTNQDAYLSFYPGGGCSSLVGYVRGRINDVSLAGGCLRLGTVMHEIGHSIGLYHEQSRPDRDDHVTIIWNNIQSNMRFNFDKFDRNKINSLGFPYDYESMMHYESNAFGGGQVTIRTKDPSKQKLIGNRQGFSEIDKQQINAMYNCNRGGSTLPPSVPPTVSPVAQCVEGQDLDNRCLGWATSGYCTATDPAHLETMKKKCCKSCKESAICNDKNTRCDEWAKKGECKANPNWMLGNCSKSCLVC&#39;,
+ &#39;AAF24994.1&#39;: &#39;AAVKEFFGSSQLSQFMDQNNPLSEITHKRRISALGPGGLTRERAGFEVRDVHPTHYGRVCPIETPEGPNIGLINSLSVYAQTNEYGFLETPYRKVTDGVVTDEIHYLSAIEEGNYVIAQANSNLDDEGHFVEDLVTCRSKGESSLFSRDQVDYMDVSTQQVVSVGGSSERVL&#39;}</pre>
 </div>
 
 </div>
@@ -13519,13 +13480,21 @@ IleArgSerGlyProMetIlePro
 </div>
 </div>
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Extract just sequence descriptions from a FASTA file and split them into fields at their vertical bars.</p>
+
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[32]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">### Reading FASTA descriptions from a file</span>
-
 <span class="k">def</span> <span class="nf">get_FASTA_descriptions</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
         <span class="k">return</span> <span class="p">[</span><span class="n">line</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;|&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">file</span> <span class="k">if</span> <span class="n">line</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;&gt;&#39;</span><span class="p">]</span>
@@ -13558,14 +13527,14 @@ IleArgSerGlyProMetIlePro
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[34]:</div>
+<div class="prompt input_prompt">In&nbsp;[22]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">### Reading FASTA descriptions using set comprehension (Read 3rd field)</span>
 
 <span class="k">def</span> <span class="nf">get_FASTA_codes</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
-        <span class="k">return</span> <span class="p">{</span><span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;|&#39;</span><span class="p">)[</span><span class="mi">2</span><span class="p">]</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">file</span>
+        <span class="k">return</span> <span class="p">{</span><span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;|&#39;</span><span class="p">)[</span><span class="mi">3</span><span class="p">]</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">file</span>
                 <span class="k">if</span> <span class="n">line</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;&gt;&#39;</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;|&#39;</span><span class="p">))</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">}</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">get_FASTA_codes</span><span class="p">(</span><span class="s1">&#39;data/BacillusSubtilisPlastmidP1414.fasta&#39;</span><span class="p">))</span>
@@ -13585,7 +13554,7 @@ IleArgSerGlyProMetIlePro
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>{&#39;ref&#39;}
+<pre>{&#39;NC_002075.1&#39;}
 </pre>
 </div>
 </div>
@@ -13660,6 +13629,57 @@ IleArgSerGlyProMetIlePro
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>16
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Nested-Comprehensions">Nested Comprehensions<a class="anchor-link" href="#Nested-Comprehensions">&#182;</a></h3><ul>
+<li>Comprehensions can have more than one for in them. When they do, the innermost ranges over its collection for each of the next one out’s collection, and so on. </li>
+<li>It is rare to see more than two for sections in a comprehension, but occasionally three can be useful.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[24]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">### A nested comprehension for generating codons</span>
+
+<span class="k">def</span> <span class="nf">generate_triples</span><span class="p">(</span><span class="n">chars</span><span class="o">=</span><span class="s1">&#39;TCAG&#39;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Return a list of all three-character combinations of unique</span>
+<span class="sd">    characters in chars&quot;&quot;&quot;</span>
+    <span class="n">chars</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">chars</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">b1</span> <span class="o">+</span> <span class="n">b2</span> <span class="o">+</span> <span class="n">b3</span> <span class="k">for</span> <span class="n">b1</span> <span class="ow">in</span> <span class="n">chars</span> <span class="k">for</span> <span class="n">b2</span> <span class="ow">in</span> <span class="n">chars</span> <span class="k">for</span> <span class="n">b3</span> <span class="ow">in</span> <span class="n">chars</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">generate_triples</span><span class="p">())</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[&#39;CCC&#39;, &#39;CCG&#39;, &#39;CCT&#39;, &#39;CCA&#39;, &#39;CGC&#39;, &#39;CGG&#39;, &#39;CGT&#39;, &#39;CGA&#39;, &#39;CTC&#39;, &#39;CTG&#39;, &#39;CTT&#39;, &#39;CTA&#39;, &#39;CAC&#39;, &#39;CAG&#39;, &#39;CAT&#39;, &#39;CAA&#39;, &#39;GCC&#39;, &#39;GCG&#39;, &#39;GCT&#39;, &#39;GCA&#39;, &#39;GGC&#39;, &#39;GGG&#39;, &#39;GGT&#39;, &#39;GGA&#39;, &#39;GTC&#39;, &#39;GTG&#39;, &#39;GTT&#39;, &#39;GTA&#39;, &#39;GAC&#39;, &#39;GAG&#39;, &#39;GAT&#39;, &#39;GAA&#39;, &#39;TCC&#39;, &#39;TCG&#39;, &#39;TCT&#39;, &#39;TCA&#39;, &#39;TGC&#39;, &#39;TGG&#39;, &#39;TGT&#39;, &#39;TGA&#39;, &#39;TTC&#39;, &#39;TTG&#39;, &#39;TTT&#39;, &#39;TTA&#39;, &#39;TAC&#39;, &#39;TAG&#39;, &#39;TAT&#39;, &#39;TAA&#39;, &#39;ACC&#39;, &#39;ACG&#39;, &#39;ACT&#39;, &#39;ACA&#39;, &#39;AGC&#39;, &#39;AGG&#39;, &#39;AGT&#39;, &#39;AGA&#39;, &#39;ATC&#39;, &#39;ATG&#39;, &#39;ATT&#39;, &#39;ATA&#39;, &#39;AAC&#39;, &#39;AAG&#39;, &#39;AAT&#39;, &#39;AAA&#39;]
 </pre>
 </div>
 </div>
