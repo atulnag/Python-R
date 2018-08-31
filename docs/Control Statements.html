@@ -11808,7 +11808,7 @@ div#notebook {
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>We will discuss about compound statements:
-<img src="images/control1.png"></p>
+<img src="../docs/images/control1.png"></p>
 <p>The four kinds of compound statements introduced here are:</p>
 <ul>
 <li>Conditionals</li>
@@ -12367,6 +12367,937 @@ You said &#34;bye&#34;
 8	18
 9	19
 </pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Iteration-Templates">Iteration Templates<a class="anchor-link" href="#Iteration-Templates">&#182;</a></h2><h3 id="Do--Template">Do -Template<a class="anchor-link" href="#Do--Template">&#182;</a></h3><ul>
+<li>Do something to every element of a collection
+<pre><code>for item in collection:
+  do something with item</code></pre>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">print_collection</span><span class="p">(</span><span class="n">collection</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">collection</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">()</span>
+<span class="n">collection</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+<span class="p">[</span><span class="nb">print</span><span class="p">(</span><span class="n">item</span><span class="p">)</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">collection</span><span class="p">]</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>2
+3
+4
+5
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[2]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[None, None, None, None]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Repeat---Template">Repeat - Template<a class="anchor-link" href="#Repeat---Template">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>To repeat a block of statements n times, iterate over range(n).</p>
+
+<pre><code>for count in range(n):
+    statements</code></pre>
+<p>Frequently, count would not even be used in the body of the iteration.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Collect---Template">Collect - Template<a class="anchor-link" href="#Collect---Template">&#182;</a></h3><ul>
+<li>A Collect iteration starts with an empty collection and uses a method or operator appropriate to its type to add something to it for each iteration.
+<pre><code>result = []
+for item in collection:
+  statements using item
+  result.append(expression based on the statements)
+return result</code></pre>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Reading FASTA entries with a Collect iteration</span>
+
+<span class="k">def</span> <span class="nf">read_FASTA_iteration</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+    <span class="n">sequences</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">descr</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">file</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">line</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;&gt;&#39;</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">descr</span><span class="p">:</span>                               <span class="c1"># have we found one yet?</span>
+                    <span class="n">sequences</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">descr</span><span class="p">,</span> <span class="n">seq</span><span class="p">))</span>
+                <span class="n">descr</span> <span class="o">=</span> <span class="n">line</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;|&#39;</span><span class="p">)</span>
+                <span class="n">seq</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>                                <span class="c1"># start a new sequence</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">seq</span> <span class="o">+=</span> <span class="n">line</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">sequences</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">descr</span><span class="p">,</span> <span class="n">seq</span><span class="p">))</span>                  <span class="c1"># add the last one found</span>
+    <span class="k">return</span> <span class="n">sequences</span>
+
+<span class="k">def</span> <span class="nf">read_FASTA</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">[(</span><span class="n">part</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;|&#39;</span><span class="p">),</span>
+                 <span class="n">part</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">))</span>
+                <span class="k">for</span> <span class="n">part</span> <span class="ow">in</span>
+                <span class="p">[</span><span class="n">entry</span><span class="o">.</span><span class="n">partition</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+                 <span class="k">for</span> <span class="n">entry</span> <span class="ow">in</span> <span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;&gt;&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">:]]]</span>
+
+<span class="k">def</span> <span class="nf">read_FASTA_loop</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+    <span class="n">sequences</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">descr</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+        <span class="n">line</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">readline</span><span class="p">()[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>                     <span class="c1"># always trim newline</span>
+        <span class="k">while</span> <span class="n">line</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">line</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;&gt;&#39;</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">descr</span><span class="p">:</span>                               <span class="c1"># any sequence found yet?</span>
+                    <span class="n">sequences</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">descr</span><span class="p">,</span> <span class="n">seq</span><span class="p">))</span>
+                <span class="n">descr</span> <span class="o">=</span> <span class="n">line</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;|&#39;</span><span class="p">)</span>
+                <span class="n">seq</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>                                <span class="c1"># start a new sequence</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">seq</span> <span class="o">+=</span> <span class="n">line</span>
+            <span class="n">line</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">readline</span><span class="p">()[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">sequences</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">descr</span><span class="p">,</span> <span class="n">seq</span><span class="p">))</span>                  <span class="c1"># easy to forget!</span>
+    <span class="k">return</span> <span class="n">sequences</span>
+
+
+<span class="k">def</span> <span class="nf">test</span><span class="p">():</span>
+    <span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;data/aa003.fasta&#39;</span>
+    <span class="n">result1</span> <span class="o">=</span> <span class="n">read_FASTA_iteration</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+    <span class="n">result2</span> <span class="o">=</span> <span class="n">read_FASTA</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+    <span class="n">result3</span> <span class="o">=</span> <span class="n">read_FASTA_loop</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">result1</span> <span class="o">==</span> <span class="n">result2</span> <span class="o">==</span> <span class="n">result3</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;All tests passed&#39;</span><span class="p">)</span>
+<span class="n">test</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>All tests passed
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Combine---Template">Combine - Template<a class="anchor-link" href="#Combine---Template">&#182;</a></h3><ul>
+<li>Sometimes we want to perform an operation on all of the elements of a collection to yield a single value.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">product</span><span class="p">(</span><span class="n">coll</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Return the product of the elements of coll converted to floats, including elements that </span>
+<span class="sd">    are string representations of numbers; if coll has an element that is a string but doesn&#39;t </span>
+<span class="sd">    represent a number, an error will occur&quot;&quot;&quot;</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="mf">1.0</span>                                        <span class="c1"># initialize</span>
+    <span class="k">for</span> <span class="n">elt</span> <span class="ow">in</span> <span class="n">coll</span><span class="p">:</span>
+        <span class="n">result</span> <span class="o">*=</span> <span class="nb">float</span><span class="p">(</span><span class="n">elt</span><span class="p">)</span>                            <span class="c1"># combine element with</span>
+    <span class="k">return</span> <span class="n">result</span>                                       <span class="c1"># accumulated result</span>
+
+<span class="n">product</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[5]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>120.0</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">### Combine: identifying the longest FASTA sequence</span>
+
+<span class="k">def</span> <span class="nf">longest_sequence</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+    <span class="n">longest_seq</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+    <span class="k">for</span> <span class="n">info</span><span class="p">,</span> <span class="n">seq</span> <span class="ow">in</span> <span class="n">read_FASTA</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+        <span class="n">longest_seq</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">longest_seq</span><span class="p">,</span> <span class="n">seq</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="nb">len</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">longest_seq</span>
+
+<span class="n">longest_sequence</span><span class="p">(</span><span class="s1">&#39;data/aa003.fasta&#39;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[7]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&#39;MSSSNHIHVLRAIDEYHKHTCLKFVKRTNQDAYLSFYPGGGCSSLVGYVRGRINDVSLAGGCLRLGTVMHEIGHSIGLYHEQSRPDRDDHVTIIWNNIQSNMRFNFDKFDRNKINSLGFPYDYESMMHYESNAFGGGQVTIRTKDPSKQKLIGNRQGFSEIDKQQINAMYNCNRGGSTLPPSVPPTVSPVAQCVEGQDLDNRCLGWATSGYCTATDPAHLETMKKKCCKSCKESAICNDKNTRCDEWAKKGECKANPNWMLGNCSKSCLVC&#39;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Count">Count<a class="anchor-link" href="#Count">&#182;</a></h4><ul>
+<li>A Count iteration “combines” the value 1 for each element of the iteration.
+<pre><code>count = 0
+for item in iterable:
+  count += 1
+return count</code></pre>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Collection-Combine">Collection Combine<a class="anchor-link" href="#Collection-Combine">&#182;</a></h3><ul>
+<li>In this variation on Combine, an action is performed on each element of a collection that produces a collection as a result, but instead of returning a collection of the results, the iteration combines the results into (reduces the results to) a single collection.
+<pre><code>result = []
+for item in collection:
+  result += fn(item)
+  # merge result with previous results
+return result</code></pre>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">### Collection Combine: sequence IDs from multiple files</span>
+
+<span class="k">def</span> <span class="nf">extract_gi_id</span><span class="p">(</span><span class="n">description</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Given a FASTA file description line, return its GenInfo ID if it has one&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">description</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;&gt;&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    <span class="n">fields</span> <span class="o">=</span> <span class="n">description</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;|&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="s1">&#39;gi&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">fields</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    <span class="k">return</span> <span class="n">fields</span><span class="p">[</span><span class="mi">1</span> <span class="o">+</span> <span class="n">fields</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s1">&#39;gi&#39;</span><span class="p">)]</span>
+
+<span class="k">def</span> <span class="nf">get_gi_ids</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Return a list of the GenInfo IDs of all sequences found in the file named filename&quot;&quot;&quot;</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">extract_gi_id</span><span class="p">(</span><span class="n">line</span><span class="p">)</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">file</span> <span class="k">if</span> <span class="n">line</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;&gt;&#39;</span><span class="p">]</span>
+
+<span class="k">def</span> <span class="nf">get_gi_ids_from_files</span><span class="p">(</span><span class="n">filenames</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Return a list of the GenInfo IDs of all sequences found in the files whose names are </span>
+<span class="sd">    contained in the collection filenames&quot;&quot;&quot;</span>
+    <span class="n">idlst</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">filenames</span><span class="p">:</span>
+        <span class="n">idlst</span> <span class="o">+=</span> <span class="n">get_gi_ids</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">idlst</span>
+
+<span class="k">def</span> <span class="nf">test</span><span class="p">():</span>
+    <span class="n">filenames</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;data/nadh.fasta&#39;</span><span class="p">,</span>
+                 <span class="s1">&#39;data/aa003.fasta&#39;</span><span class="p">,</span>
+                 <span class="s1">&#39;data/BacillusSubtilisPlastmidP1414.fasta&#39;</span>
+                 <span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">get_gi_ids_from_files</span><span class="p">(</span><span class="n">filenames</span><span class="p">))</span>
+<span class="n">test</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[&#39;6694188&#39;, &#39;6694190&#39;, &#39;6694192&#39;, &#39;6694194&#39;, &#39;6694196&#39;, &#39;6694198&#39;, &#39;6694200&#39;, &#39;6694202&#39;, &#39;6694204&#39;, &#39;6694206&#39;, &#39;6694208&#39;, &#39;6694210&#39;, &#39;6694212&#39;, &#39;6694214&#39;, &#39;6694216&#39;, &#39;6693803&#39;, &#39;6693805&#39;, &#39;6693816&#39;, &#39;10956512&#39;]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Search">Search<a class="anchor-link" href="#Search">&#182;</a></h3><ul>
+<li>Search is a simple variation on Do:
+<pre><code>for item in collection:
+  if test item:
+      return item</code></pre>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">### Extracting a sequence by ID from a large FASTA file</span>
+
+<span class="k">def</span> <span class="nf">FASTA_search_by_gi_id</span><span class="p">(</span><span class="nb">id</span><span class="p">,</span> <span class="n">file</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">file</span><span class="p">:</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">line</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;&gt;&#39;</span> <span class="ow">and</span> <span class="nb">str</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span> <span class="o">==</span> <span class="n">get_gi_id</span><span class="p">(</span><span class="n">line</span><span class="p">)):</span>
+            <span class="k">return</span> <span class="n">read_FASTA_sequence</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">search_FASTA_file_by_gi_id</span><span class="p">(</span><span class="nb">id</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Return the sequence with the GenInfo ID ID from the FASTA file</span>
+<span class="sd">    named filename, reading one entry at a time until it is found&quot;&quot;&quot;</span>
+    <span class="nb">id</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>                      <span class="c1"># user might call with a number</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">FASTA_search_by_gi_id</span><span class="p">(</span><span class="nb">id</span><span class="p">,</span> <span class="n">file</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">read_FASTA_sequence</span><span class="p">(</span><span class="n">file</span><span class="p">):</span>
+    <span class="n">seq</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">file</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">line</span> <span class="ow">or</span> <span class="n">line</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;&gt;&#39;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">seq</span>
+        <span class="n">seq</span> <span class="o">+=</span> <span class="n">line</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="k">def</span> <span class="nf">get_gi_id</span><span class="p">(</span><span class="n">description</span><span class="p">):</span>
+    <span class="n">fields</span> <span class="o">=</span> <span class="n">description</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;|&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">fields</span> <span class="ow">and</span> <span class="s1">&#39;gi&#39;</span> <span class="ow">in</span> <span class="n">fields</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">fields</span><span class="p">[(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">fields</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s1">&#39;gi&#39;</span><span class="p">))]</span>
+
+<span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;data/Acidobacterium-capsulatum-coding-regions.fasta&#39;</span>
+<span class="n">search_FASTA_file_by_gi_id</span><span class="p">(</span><span class="s1">&#39;225793573&#39;</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[10]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&#39;MKMKAVSQKALRCAVVLAVALVTAVALPAQNKPYPTAAQLAPTPPMGWNSWNHFAGKVDEADVRAAAKAMVDSGMAAAGYKYIVIDDTWQGKRDAQGFIHPNSKFPDMPGLIQYVHSLGLKFGIYSSPGPQTCAGYEGSYGHVQQDAETYARWGVDYLKYDLCSYLGIMHKEAANNPAKALAMQQAAYLKMYKALAAAGRPIVFSLCQYGIGDVWKWGPSVGGNLWRTTGDIQDNYARMATIGFGQAGLAKYAGPGHWNDPDMLEVGNGGMTNEEYRTHMSLWALLAAPLIAGNDLSHMSPATLAILTNREVIAVDQDRLGREGDRVSKNGALEIWAKPLTGGAKAVGLFNRDTQPHSMTLQLSVVNFPPHAHLRDLWRHKTVHAHHGAYTVTVPAHGVVLLKLTR&#39;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">rna_sequence_is_valid</span><span class="p">(</span><span class="n">seq</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">base</span> <span class="ow">in</span> <span class="n">seq</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">base</span> <span class="ow">not</span> <span class="ow">in</span> <span class="s1">&#39;UCAGucag&#39;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+    <span class="k">return</span> <span class="kc">True</span>
+
+<span class="k">def</span> <span class="nf">dna_sequence_contains_N</span><span class="p">(</span><span class="n">seq</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">base</span> <span class="ow">in</span> <span class="n">seq</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">base</span> <span class="o">==</span> <span class="s1">&#39;N&#39;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">True</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Filter">Filter<a class="anchor-link" href="#Filter">&#182;</a></h3><p>Filtering is similar to searching, but instead of returning a result the first time a match
+is found, it does something with each element for which the match was successful.</p>
+<h4 id="Filtered-Do">Filtered Do<a class="anchor-link" href="#Filtered-Do">&#182;</a></h4><ul>
+<li>A Filtered Do performs an action for each item that meets a specified condition.
+<pre><code>for item in collection:
+  if test item:
+      statements using item</code></pre>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">### Printing the header lines from a FASTA file</span>
+
+<span class="k">def</span> <span class="nf">print_FASTA_headers</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">file</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">line</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;&gt;&#39;</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="n">line</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="n">print_FASTA_headers</span><span class="p">(</span><span class="s1">&#39;data/aa010.fasta&#39;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>gi|6693791|gb|AAF24984.1|AF082179_1 (AF082179) HepA-related protein HARP [Homo sapiens]
+gi|6693793|gb|AAF24985.1|AF088884_1 (AF088884) HepA-related protein Harp [Mus musculus]
+gi|6693798|gb|AAF24986.1|AF116242_1 (AF116242) K-Cl cotransporter KCC3 [Homo sapiens]
+gi|6693800|gb|AAF24987.1|AF121349_1 (AF121349) HOAR-like protein [Neodiprion sertifer nucleopolyhedrovirus]
+gi|6693801|gb|AAF24988.1|AF121349_2 (AF121349) ORF22 [Neodiprion sertifer nucleopolyhedrovirus]
+gi|6693802|gb|AAF24989.1|AF121349_3 (AF121349) late expression factor 2 [Neodiprion sertifer nucleopolyhedrovirus]
+gi|6693803|gb|AAF24990.1|AF121349_4 (AF121349) late expression factor 5 [Neodiprion sertifer nucleopolyhedrovirus]
+gi|6693805|gb|AAF24991.1| (AF125506) astacin family metalloendopeptidase FARM-1 [Hydra vulgaris]
+gi|6693816|gb|AAF24994.1|AF129447_1 (AF129447) RpoB [Klebsiella ornithinolytica]
+gi|6693818|gb|AAF24995.1|AF129448_1 (AF129448) RpoB [Klebsiella terrigena]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Filtered-Collect">Filtered Collect<a class="anchor-link" href="#Filtered-Collect">&#182;</a></h4><ul>
+<li>Here, the values for which test is true are collected one at a time.
+<pre><code>result = []
+for item in collection:
+   if test item:
+       statements using item
+       result.append(expression based on the statements)
+return result</code></pre>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">### Extracting sequences with matching descriptions</span>
+
+<span class="k">def</span> <span class="nf">extract_matching_sequences</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">string</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;From a FASTA file named filename, extract all sequences whose descriptions contain string&quot;&quot;&quot;</span>
+    <span class="n">sequences</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">seq</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">file</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">line</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;&gt;&#39;</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">seq</span><span class="p">:</span>                        <span class="c1"># not first time through</span>
+                    <span class="n">sequences</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span>
+                <span class="n">seq</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>                       <span class="c1"># next sequence detected</span>
+                <span class="n">includeflag</span> <span class="o">=</span> <span class="n">string</span> <span class="ow">in</span> <span class="n">line</span>   <span class="c1"># flag for later iterations</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">includeflag</span><span class="p">:</span>
+                    <span class="n">seq</span> <span class="o">+=</span> <span class="n">line</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">seq</span><span class="p">:</span>                        <span class="c1"># last sequence in file is included</span>
+            <span class="n">sequences</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">sequences</span>
+
+<span class="k">for</span> <span class="n">seq</span> <span class="ow">in</span> <span class="n">extract_matching_sequences</span><span class="p">(</span><span class="s1">&#39;data/aa010.fasta&#39;</span><span class="p">,</span> <span class="s1">&#39;factor&#39;</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>MENEIIYIKSADELKRAQNDDLRNVYVHYTLYSGILSPLQTLDKTRLYVFVKNVNDPNLKPKNVNDIKSPSKNHSYKRQRYPCFNTISGSTIHKICNVMKPPPCVRHALKLIDERPMKHRFQQRFVVQTYMSRKYLCESCTDNECLNQILSELYHNEKKCMTQLKHCTNNKIKPYNCSKMQTLGLCNVAVKCSCTNLLSW
+MPPCSEKTLKDIEEIFLKFRRKKKWEDLIRYLKYKQPKCVKTFNLTGTGHKYHAMWAYNPITDKREKKQISLDVMKIQELHRITNNNSKLYVEIRKIMTDDHRCPCEEIKNYMQQIAEYKNNRSNKVFNTPPTKIVPNALEKILKNFTINLMIDKKPKKKITKSAHTIKHPPVLNIDYEHTLEFAGQTTVKEICKHASLGDTIEIQNRSFDEMVNLYTTCVQCKQMYKIQ
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Filtered-Combine">Filtered Combine<a class="anchor-link" href="#Filtered-Combine">&#182;</a></h4>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">### Filtered Combine: another definition of product</span>
+
+<span class="k">def</span> <span class="nf">is_number</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Return True if value is an int or a float&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">float</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">product</span><span class="p">(</span><span class="n">coll</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Return the product of the numeric elements of coll&quot;&quot;&quot;</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="mf">1.0</span>                         <span class="c1"># initialize</span>
+    <span class="k">for</span> <span class="n">elt</span> <span class="ow">in</span> <span class="n">coll</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">is_number</span><span class="p">(</span><span class="n">elt</span><span class="p">):</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">result</span> <span class="o">*</span> <span class="nb">float</span><span class="p">(</span><span class="n">elt</span><span class="p">)</span> <span class="c1"># combine element with accumulated result</span>
+    <span class="k">return</span> <span class="n">result</span>
+
+<span class="n">product</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">,</span> <span class="s1">&#39;four&#39;</span><span class="p">))</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[15]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>7.0</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Filtered-Count">Filtered Count<a class="anchor-link" href="#Filtered-Count">&#182;</a></h4>
+<pre><code>count = 0
+for item in iterable:
+    if test item:
+        count += 1
+return count</code></pre>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Nested-Iterations">Nested Iterations<a class="anchor-link" href="#Nested-Iterations">&#182;</a></h3>
+<pre><code>for outer in outer_collection:
+    for inner in inner_collection:
+        do something with inner and outer</code></pre>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">### A nested iteration</span>
+
+<span class="k">def</span> <span class="nf">list_sequences_in_files</span><span class="p">(</span><span class="n">filelist</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;For each file whose name is contained in filelist, list the</span>
+<span class="sd">    description of each sequence it contains&quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">filelist</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">file</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">line</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;&gt;&#39;</span><span class="p">:</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">line</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="n">filenames</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;data/nadh.fasta&#39;</span><span class="p">,</span>
+             <span class="s1">&#39;data/aa003.fasta&#39;</span><span class="p">,</span>
+             <span class="s1">&#39;data/BacillusSubtilisPlastmidP1414.fasta&#39;</span>
+             <span class="p">)</span>
+<span class="n">list_sequences_in_files</span><span class="p">(</span><span class="n">filenames</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>data/nadh.fasta
+	 gi|6694188|gb|AAF25169.1|AF182341_1 (AF182341) NADH dehydrogenase [Buergersiochloa bambusoides]
+	 gi|6694190|gb|AAF25170.1|AF182342_1 (AF182342) NADH dehydrogenase [Shibataea kumasaca]
+	 gi|6694192|gb|AAF25171.1|AF182343_1 (AF182343) NADH dehydrogenase [Sucrea maculata]
+	 gi|6694194|gb|AAF25172.1|AF182344_1 (AF182344) NADH dehydrogenase [Sasa variegata]
+	 gi|6694196|gb|AAF25173.1|AF182345_1 (AF182345) NADH dehydrogenase [Puelia olyriformis]
+	 gi|6694198|gb|AAF25174.1|AF182346_1 (AF182346) NADH dehydrogenase [Yushania exilis]
+	 gi|6694200|gb|AAF25175.1|AF182347_1 (AF182347) NADH dehydrogenase [Alvimia gracilis]
+	 gi|6694202|gb|AAF25176.1|AF182348_1 (AF182348) NADH dehydrogenase [Melocanna baccifera]
+	 gi|6694204|gb|AAF25177.1|AF182349_1 (AF182349) NADH dehydrogenase [Rhipidocladum pittieri]
+	 gi|6694206|gb|AAF25178.1|AF182350_1 (AF182350) NADH dehydrogenase [Otatea acuminata]
+	 gi|6694208|gb|AAF25179.1|AF182351_1 (AF182351) NADH dehydrogenase [Hickelia madagascariensis]
+	 gi|6694210|gb|AAF25180.1|AF182352_1 (AF182352) NADH dehydrogenase [Nastus elatus]
+	 gi|6694212|gb|AAF25181.1|AF182353_1 (AF182353) NADH dehydrogenase [Eremitis sp. Clark and Zhang 1343]
+	 gi|6694214|gb|AAF25182.1|AF182354_1 (AF182354) NADH dehydrogenase [Pariana radiciflora]
+	 gi|6694216|gb|AAF25183.1|AF182355_1 (AF182355) NADH dehydrogenase [Neurolepis aperta]
+data/aa003.fasta
+	 gi|6693803|gb|AAF24990.1|AF121349_4 (AF121349) late expression factor 5 [Neodiprion sertifer nucleopolyhedrovirus]
+	 gi|6693805|gb|AAF24991.1| (AF125506) astacin family metalloendopeptidase FARM-1 [Hydra vulgaris]
+	 gi|6693816|gb|AAF24994.1|AF129447_1 (AF129447) RpoB [Klebsiella ornithinolytica]
+data/BacillusSubtilisPlastmidP1414.fasta
+	 gi|10956512|ref|NC_002075.1| Bacillus subtilis plasmid p1414, complete sequence
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">### A two-function nested iteration</span>
+
+<span class="k">def</span> <span class="nf">list_sequences_in_files</span><span class="p">(</span><span class="n">filelist</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;For each file whose name is contained in filelist, list the</span>
+<span class="sd">    description of each sequence it contains&quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">filelist</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+            <span class="n">list_sequences_in_file</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">list_sequences_in_file</span><span class="p">(</span><span class="n">file</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">file</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">line</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;&gt;&#39;</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">line</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+
+
+<span class="n">filenames</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;data/nadh.fasta&#39;</span><span class="p">,</span>
+             <span class="s1">&#39;data/aa003.fasta&#39;</span><span class="p">,</span>
+             <span class="s1">&#39;data/BacillusSubtilisPlastmidP1414.fasta&#39;</span>
+            <span class="p">)</span>
+<span class="n">list_sequences_in_filesb</span><span class="p">(</span><span class="n">filenames</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>data/nadh.fasta
+	 gi|6694188|gb|AAF25169.1|AF182341_1 (AF182341) NADH dehydrogenase [Buergersiochloa bambusoides]
+	 gi|6694190|gb|AAF25170.1|AF182342_1 (AF182342) NADH dehydrogenase [Shibataea kumasaca]
+	 gi|6694192|gb|AAF25171.1|AF182343_1 (AF182343) NADH dehydrogenase [Sucrea maculata]
+	 gi|6694194|gb|AAF25172.1|AF182344_1 (AF182344) NADH dehydrogenase [Sasa variegata]
+	 gi|6694196|gb|AAF25173.1|AF182345_1 (AF182345) NADH dehydrogenase [Puelia olyriformis]
+	 gi|6694198|gb|AAF25174.1|AF182346_1 (AF182346) NADH dehydrogenase [Yushania exilis]
+	 gi|6694200|gb|AAF25175.1|AF182347_1 (AF182347) NADH dehydrogenase [Alvimia gracilis]
+	 gi|6694202|gb|AAF25176.1|AF182348_1 (AF182348) NADH dehydrogenase [Melocanna baccifera]
+	 gi|6694204|gb|AAF25177.1|AF182349_1 (AF182349) NADH dehydrogenase [Rhipidocladum pittieri]
+	 gi|6694206|gb|AAF25178.1|AF182350_1 (AF182350) NADH dehydrogenase [Otatea acuminata]
+	 gi|6694208|gb|AAF25179.1|AF182351_1 (AF182351) NADH dehydrogenase [Hickelia madagascariensis]
+	 gi|6694210|gb|AAF25180.1|AF182352_1 (AF182352) NADH dehydrogenase [Nastus elatus]
+	 gi|6694212|gb|AAF25181.1|AF182353_1 (AF182353) NADH dehydrogenase [Eremitis sp. Clark and Zhang 1343]
+	 gi|6694214|gb|AAF25182.1|AF182354_1 (AF182354) NADH dehydrogenase [Pariana radiciflora]
+	 gi|6694216|gb|AAF25183.1|AF182355_1 (AF182355) NADH dehydrogenase [Neurolepis aperta]
+data/aa003.fasta
+	 gi|6693803|gb|AAF24990.1|AF121349_4 (AF121349) late expression factor 5 [Neodiprion sertifer nucleopolyhedrovirus]
+	 gi|6693805|gb|AAF24991.1| (AF125506) astacin family metalloendopeptidase FARM-1 [Hydra vulgaris]
+	 gi|6693816|gb|AAF24994.1|AF129447_1 (AF129447) RpoB [Klebsiella ornithinolytica]
+data/BacillusSubtilisPlastmidP1414.fasta
+	 gi|10956512|ref|NC_002075.1| Bacillus subtilis plasmid p1414, complete sequence
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">### Printing the codon table</span>
+
+<span class="n">RNA_codon_table</span> <span class="o">=</span> <span class="p">{</span>
+<span class="c1">#                        Second Base</span>
+<span class="c1">#        U             C             A             G</span>
+<span class="c1"># U</span>
+    <span class="s1">&#39;UUU&#39;</span><span class="p">:</span> <span class="s1">&#39;Phe&#39;</span><span class="p">,</span> <span class="s1">&#39;UCU&#39;</span><span class="p">:</span> <span class="s1">&#39;Ser&#39;</span><span class="p">,</span> <span class="s1">&#39;UAU&#39;</span><span class="p">:</span> <span class="s1">&#39;Tyr&#39;</span><span class="p">,</span> <span class="s1">&#39;UGU&#39;</span><span class="p">:</span> <span class="s1">&#39;Cys&#39;</span><span class="p">,</span>     <span class="c1"># UxU</span>
+    <span class="s1">&#39;UUC&#39;</span><span class="p">:</span> <span class="s1">&#39;Phe&#39;</span><span class="p">,</span> <span class="s1">&#39;UCC&#39;</span><span class="p">:</span> <span class="s1">&#39;Ser&#39;</span><span class="p">,</span> <span class="s1">&#39;UAC&#39;</span><span class="p">:</span> <span class="s1">&#39;Tyr&#39;</span><span class="p">,</span> <span class="s1">&#39;UGC&#39;</span><span class="p">:</span> <span class="s1">&#39;Cys&#39;</span><span class="p">,</span>     <span class="c1"># UxC</span>
+    <span class="s1">&#39;UUA&#39;</span><span class="p">:</span> <span class="s1">&#39;Leu&#39;</span><span class="p">,</span> <span class="s1">&#39;UCA&#39;</span><span class="p">:</span> <span class="s1">&#39;Ser&#39;</span><span class="p">,</span> <span class="s1">&#39;UAA&#39;</span><span class="p">:</span> <span class="s1">&#39;---&#39;</span><span class="p">,</span> <span class="s1">&#39;UGA&#39;</span><span class="p">:</span> <span class="s1">&#39;---&#39;</span><span class="p">,</span>     <span class="c1"># UxA</span>
+    <span class="s1">&#39;UUG&#39;</span><span class="p">:</span> <span class="s1">&#39;Leu&#39;</span><span class="p">,</span> <span class="s1">&#39;UCG&#39;</span><span class="p">:</span> <span class="s1">&#39;Ser&#39;</span><span class="p">,</span> <span class="s1">&#39;UAG&#39;</span><span class="p">:</span> <span class="s1">&#39;---&#39;</span><span class="p">,</span> <span class="s1">&#39;UGG&#39;</span><span class="p">:</span> <span class="s1">&#39;Urp&#39;</span><span class="p">,</span>     <span class="c1"># UxG</span>
+<span class="c1"># C</span>
+    <span class="s1">&#39;CUU&#39;</span><span class="p">:</span> <span class="s1">&#39;Leu&#39;</span><span class="p">,</span> <span class="s1">&#39;CCU&#39;</span><span class="p">:</span> <span class="s1">&#39;Pro&#39;</span><span class="p">,</span> <span class="s1">&#39;CAU&#39;</span><span class="p">:</span> <span class="s1">&#39;His&#39;</span><span class="p">,</span> <span class="s1">&#39;CGU&#39;</span><span class="p">:</span> <span class="s1">&#39;Arg&#39;</span><span class="p">,</span>     <span class="c1"># CxU</span>
+    <span class="s1">&#39;CUC&#39;</span><span class="p">:</span> <span class="s1">&#39;Leu&#39;</span><span class="p">,</span> <span class="s1">&#39;CCC&#39;</span><span class="p">:</span> <span class="s1">&#39;Pro&#39;</span><span class="p">,</span> <span class="s1">&#39;CAC&#39;</span><span class="p">:</span> <span class="s1">&#39;His&#39;</span><span class="p">,</span> <span class="s1">&#39;CGC&#39;</span><span class="p">:</span> <span class="s1">&#39;Arg&#39;</span><span class="p">,</span>     <span class="c1"># CxC</span>
+    <span class="s1">&#39;CUA&#39;</span><span class="p">:</span> <span class="s1">&#39;Leu&#39;</span><span class="p">,</span> <span class="s1">&#39;CCA&#39;</span><span class="p">:</span> <span class="s1">&#39;Pro&#39;</span><span class="p">,</span> <span class="s1">&#39;CAA&#39;</span><span class="p">:</span> <span class="s1">&#39;Gln&#39;</span><span class="p">,</span> <span class="s1">&#39;CGA&#39;</span><span class="p">:</span> <span class="s1">&#39;Arg&#39;</span><span class="p">,</span>     <span class="c1"># CxA</span>
+    <span class="s1">&#39;CUG&#39;</span><span class="p">:</span> <span class="s1">&#39;Leu&#39;</span><span class="p">,</span> <span class="s1">&#39;CCG&#39;</span><span class="p">:</span> <span class="s1">&#39;Pro&#39;</span><span class="p">,</span> <span class="s1">&#39;CAG&#39;</span><span class="p">:</span> <span class="s1">&#39;Gln&#39;</span><span class="p">,</span> <span class="s1">&#39;CGG&#39;</span><span class="p">:</span> <span class="s1">&#39;Arg&#39;</span><span class="p">,</span>     <span class="c1"># CxG</span>
+<span class="c1"># A</span>
+    <span class="s1">&#39;AUU&#39;</span><span class="p">:</span> <span class="s1">&#39;Ile&#39;</span><span class="p">,</span> <span class="s1">&#39;ACU&#39;</span><span class="p">:</span> <span class="s1">&#39;Thr&#39;</span><span class="p">,</span> <span class="s1">&#39;AAU&#39;</span><span class="p">:</span> <span class="s1">&#39;Asn&#39;</span><span class="p">,</span> <span class="s1">&#39;AGU&#39;</span><span class="p">:</span> <span class="s1">&#39;Ser&#39;</span><span class="p">,</span>     <span class="c1"># AxU</span>
+    <span class="s1">&#39;AUC&#39;</span><span class="p">:</span> <span class="s1">&#39;Ile&#39;</span><span class="p">,</span> <span class="s1">&#39;ACC&#39;</span><span class="p">:</span> <span class="s1">&#39;Thr&#39;</span><span class="p">,</span> <span class="s1">&#39;AAC&#39;</span><span class="p">:</span> <span class="s1">&#39;Asn&#39;</span><span class="p">,</span> <span class="s1">&#39;AGC&#39;</span><span class="p">:</span> <span class="s1">&#39;Ser&#39;</span><span class="p">,</span>     <span class="c1"># AxC</span>
+    <span class="s1">&#39;AUA&#39;</span><span class="p">:</span> <span class="s1">&#39;Ile&#39;</span><span class="p">,</span> <span class="s1">&#39;ACA&#39;</span><span class="p">:</span> <span class="s1">&#39;Thr&#39;</span><span class="p">,</span> <span class="s1">&#39;AAA&#39;</span><span class="p">:</span> <span class="s1">&#39;Lys&#39;</span><span class="p">,</span> <span class="s1">&#39;AGA&#39;</span><span class="p">:</span> <span class="s1">&#39;Arg&#39;</span><span class="p">,</span>     <span class="c1"># AxA</span>
+    <span class="s1">&#39;AUG&#39;</span><span class="p">:</span> <span class="s1">&#39;Met&#39;</span><span class="p">,</span> <span class="s1">&#39;ACG&#39;</span><span class="p">:</span> <span class="s1">&#39;Thr&#39;</span><span class="p">,</span> <span class="s1">&#39;AAG&#39;</span><span class="p">:</span> <span class="s1">&#39;Lys&#39;</span><span class="p">,</span> <span class="s1">&#39;AGG&#39;</span><span class="p">:</span> <span class="s1">&#39;Arg&#39;</span><span class="p">,</span>     <span class="c1"># AxG</span>
+<span class="c1"># G</span>
+    <span class="s1">&#39;GUU&#39;</span><span class="p">:</span> <span class="s1">&#39;Val&#39;</span><span class="p">,</span> <span class="s1">&#39;GCU&#39;</span><span class="p">:</span> <span class="s1">&#39;Ala&#39;</span><span class="p">,</span> <span class="s1">&#39;GAU&#39;</span><span class="p">:</span> <span class="s1">&#39;Asp&#39;</span><span class="p">,</span> <span class="s1">&#39;GGU&#39;</span><span class="p">:</span> <span class="s1">&#39;Gly&#39;</span><span class="p">,</span>     <span class="c1"># GxU</span>
+    <span class="s1">&#39;GUC&#39;</span><span class="p">:</span> <span class="s1">&#39;Val&#39;</span><span class="p">,</span> <span class="s1">&#39;GCC&#39;</span><span class="p">:</span> <span class="s1">&#39;Ala&#39;</span><span class="p">,</span> <span class="s1">&#39;GAC&#39;</span><span class="p">:</span> <span class="s1">&#39;Asp&#39;</span><span class="p">,</span> <span class="s1">&#39;GGC&#39;</span><span class="p">:</span> <span class="s1">&#39;Gly&#39;</span><span class="p">,</span>     <span class="c1"># GxC</span>
+    <span class="s1">&#39;GUA&#39;</span><span class="p">:</span> <span class="s1">&#39;Val&#39;</span><span class="p">,</span> <span class="s1">&#39;GCA&#39;</span><span class="p">:</span> <span class="s1">&#39;Ala&#39;</span><span class="p">,</span> <span class="s1">&#39;GAA&#39;</span><span class="p">:</span> <span class="s1">&#39;Glu&#39;</span><span class="p">,</span> <span class="s1">&#39;GGA&#39;</span><span class="p">:</span> <span class="s1">&#39;Gly&#39;</span><span class="p">,</span>     <span class="c1"># GxA</span>
+    <span class="s1">&#39;GUG&#39;</span><span class="p">:</span> <span class="s1">&#39;Val&#39;</span><span class="p">,</span> <span class="s1">&#39;GCG&#39;</span><span class="p">:</span> <span class="s1">&#39;Ala&#39;</span><span class="p">,</span> <span class="s1">&#39;GAG&#39;</span><span class="p">:</span> <span class="s1">&#39;Glu&#39;</span><span class="p">,</span> <span class="s1">&#39;GGG&#39;</span><span class="p">:</span> <span class="s1">&#39;Gly&#39;</span>      <span class="c1"># GxG</span>
+<span class="p">}</span>
+    
+    
+<span class="c1">### RNA codon lookup from a dictionary</span>
+
+<span class="k">def</span> <span class="nf">translate_RNA_codon</span><span class="p">(</span><span class="n">codon</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">RNA_codon_table</span><span class="p">[</span><span class="n">codon</span><span class="p">]</span>
+
+
+<span class="n">DNA_bases</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;T&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;G&#39;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">translate_DNA_codon</span><span class="p">(</span><span class="n">codon</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">DNA_codon_table</span><span class="p">[</span><span class="n">codon</span><span class="p">]</span>
+
+<span class="k">def</span> <span class="nf">print_codon_table</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Print the DNA codon table in a nice, but simple,</span>
+<span class="sd">    arrangement&quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">base1</span> <span class="ow">in</span> <span class="n">DNA_bases</span><span class="p">:</span>            <span class="c1"># horizontal section (or &quot;group&quot;)</span>
+        <span class="k">for</span> <span class="n">base3</span> <span class="ow">in</span> <span class="n">DNA_bases</span><span class="p">:</span>        <span class="c1"># line (or &quot;row&quot;)</span>
+            <span class="k">for</span> <span class="n">base2</span> <span class="ow">in</span> <span class="n">DNA_bases</span><span class="p">:</span>    <span class="c1"># vertical section (or &quot;column&quot;)</span>
+                <span class="c1"># the base2 loop is inside the base3 loop!</span>
+                <span class="nb">print</span><span class="p">(</span><span class="n">base1</span><span class="o">+</span><span class="n">base2</span><span class="o">+</span><span class="n">base3</span><span class="p">,</span>
+                      <span class="n">translate_DNA_codon</span><span class="p">(</span><span class="n">base1</span><span class="o">+</span><span class="n">base2</span><span class="o">+</span><span class="n">base3</span><span class="p">),</span>
+                      <span class="n">end</span><span class="o">=</span><span class="s1">&#39;  &#39;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">()</span>
+
+<span class="n">print_codon_table</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_text output_error">
+<pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-green-fg">&lt;ipython-input-18-ee375b4dcb12&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span><span class="ansi-blue-fg">()</span>
+<span class="ansi-green-intense-fg ansi-bold">     51</span>         print<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">     52</span> 
+<span class="ansi-green-fg">---&gt; 53</span><span class="ansi-red-fg"> </span>print_codon_table<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
+
+<span class="ansi-green-fg">&lt;ipython-input-18-ee375b4dcb12&gt;</span> in <span class="ansi-cyan-fg">print_codon_table</span><span class="ansi-blue-fg">()</span>
+<span class="ansi-green-intense-fg ansi-bold">     46</span>                 <span class="ansi-red-fg"># the base2 loop is inside the base3 loop!</span>
+<span class="ansi-green-intense-fg ansi-bold">     47</span>                 print(base1+base2+base3,
+<span class="ansi-green-fg">---&gt; 48</span><span class="ansi-red-fg">                       </span>translate_DNA_codon<span class="ansi-blue-fg">(</span>base1<span class="ansi-blue-fg">+</span>base2<span class="ansi-blue-fg">+</span>base3<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">,</span>
+<span class="ansi-green-intense-fg ansi-bold">     49</span>                       end=&#39;  &#39;)
+<span class="ansi-green-intense-fg ansi-bold">     50</span>             print<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
+
+<span class="ansi-green-fg">&lt;ipython-input-18-ee375b4dcb12&gt;</span> in <span class="ansi-cyan-fg">translate_DNA_codon</span><span class="ansi-blue-fg">(codon)</span>
+<span class="ansi-green-intense-fg ansi-bold">     36</span> 
+<span class="ansi-green-intense-fg ansi-bold">     37</span> <span class="ansi-green-fg">def</span> translate_DNA_codon<span class="ansi-blue-fg">(</span>codon<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg">---&gt; 38</span><span class="ansi-red-fg">     </span><span class="ansi-green-fg">return</span> DNA_codon_table<span class="ansi-blue-fg">[</span>codon<span class="ansi-blue-fg">]</span>
+<span class="ansi-green-intense-fg ansi-bold">     39</span> 
+<span class="ansi-green-intense-fg ansi-bold">     40</span> <span class="ansi-green-fg">def</span> print_codon_table<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+
+<span class="ansi-red-fg">NameError</span>: name &#39;DNA_codon_table&#39; is not defined</pre>
 </div>
 </div>
 
