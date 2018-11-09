@@ -11,3 +11,4 @@ I am currently taking the classes for Python & R lnaguages for M.Sc Bioinformati
 6. [Control Statements](Control%20Statements.html){:target="_blank"}
 7. [Exception Handeling](Exception_Handeling.html){:target="_blank"}
 8. [Object Oriented Programming](OOP.pdf){:target="_blank"}
+9. [Python & SQLite - I](python_sqlite3.html){:target="_blank"}
