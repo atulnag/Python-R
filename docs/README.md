@@ -1,3 +1,4 @@
+<link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico">
 ## Welcome to Page for Python & R Programming Languages
 
 I am currently taking the classes for Python & R lnaguages for M.Sc Bioinformatics students from the Department of Biotechnology and Bioinformatics, Sambalpur University
