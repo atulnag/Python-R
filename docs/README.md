@@ -13,3 +13,5 @@ I am currently taking the classes for Python & R lnaguages for M.Sc Bioinformati
 7. [Exception Handeling](Exception_Handeling.html){:target="_blank"}
 8. [Object Oriented Programming](OOP.pdf){:target="_blank"}
 9. [Python & SQLite - I](python_sqlite3.html){:target="_blank"}
+10. [Network Programs](NetworkPrograms.html){:target="_blank"}
+11. [Regular Expressions](Regular_Expressions.html){:target="_blank"}
