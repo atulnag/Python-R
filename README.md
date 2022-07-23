@@ -1,6 +1,6 @@
 ## Welcome to Page for Python & R Programming Languages
 
-I am currently taking the classes for Python & R lnaguages for M.Sc Bioinformatics students from the Department of Biotechnology and Bioinformatics, Sambalpur University
+
 
 ### Lectures
 1. [Introduction to Python](https://github.com/atulnag/Python-R/blob/master/Introduction%20to%20Python.pdf).
